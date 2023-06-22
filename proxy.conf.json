@@ -1,8 +1,0 @@
-{
-  "/report/collection/*": {
-    "target": "https://api.sandbox.pagos360.com",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}
