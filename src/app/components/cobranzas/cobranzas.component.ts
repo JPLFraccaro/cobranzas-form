@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Cobranza, ReporteCobranzas } from '../models/cobranzas.model'
+import { Cobranza, ReporteCobranzas } from '../../models/cobranzas.model'
 import { Router } from '@angular/router'
 
 @Component({
@@ -48,7 +48,6 @@ export class CobranzasComponent implements OnInit{
     const url = 'https://api.sandbox.pagos360.com/report/collection/';
     const apiKey = 'NjQwNDMxNGI1YzU0YjllYmVhYjJiZDdmY2E5Y2EyMDg5ZDVlODFmNzRmMDc1OGJmMDY2OTY0NzlhNGJiZWQwNA'
     const date = this.normalizeDate(this.selectedDate)
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`

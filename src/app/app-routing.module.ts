@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CobranzasComponent } from './cobranzas/cobranzas.component';
+import { HomeComponent } from './components/home/home.component';
+import { CobranzasComponent } from './components/cobranzas/cobranzas.component';
+import { ErrorComponent } from './components/error/error.component';
+import { SoonComponent } from './components/soon/soon.component';
 
 const routes: Routes = [
   {
@@ -11,17 +13,27 @@ const routes: Routes = [
   },
   {
     path: '',
-    title: 'Pepe S.A.',
+    title: 'Aplicación de Cobranzas',
     component: HomeComponent
   },
   {
     path: 'cobranzas',
-    title: 'Cobranzas de Pepe S.A.',
+    title: 'Aplicación de Cobranzas',
     component: CobranzasComponent
   },
   {
+    path: 'soon',
+    title: 'Muy pronto',
+    component: SoonComponent,
+  },
+  {
+    path: 'error',
+    title: 'Sitio no encontrado',
+    component: ErrorComponent,
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'error',
     pathMatch: 'full',
   },
 ];

@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<h2>Reporte de Cobranzas</h2>
+<button (click)="logOut()" class="text-l font-bold underline">Salir</button>
+<div>
+  <label for="date">Fecha:</label>
+  <input
+    type="date"
+    id="date"
+    [(ngModel)]="selectedDate"
+    (change)="getReport()"
+    max="{{ yesterdayString }}"
+    value="{{ yesterdayString }}"
+  />
+</div>
+<div
+  class="relative overflow-x-auto shadow-md rounded-lg"
+  *ngIf="registros[0]; else elseBlock"
+>
+  <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-4 py-2">ID</th>
+        <th scope="col" class="px-4 py-2">Nombre</th>
+        <th scope="col" class="px-4 py-2">Concepto</th>
+        <th scope="col" class="px-4 py-2">Medio de pago</th>
+        <th scope="col" class="px-4 py-2">Pagado</th>
+        <th scope="col" class="px-4 py-2">Informado</th>
+        <th scope="col" class="px-4 py-2">Acreditado</th>
+        <th scope="col" class="px-4 py-2">Importe Cobrado</th>
+        <th scope="col" class="px-4 py-2">Comisión Bruta</th>
+        <th scope="col" class="px-4 py-2">Importe Neto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        *ngFor="let registro of registros"
+      >
+        <td class="px-6 py-4">{{ registro.request_id }}</td>
+        <td class="px-6 py-4">{{ registro.payer_name }}</td>
+        <td class="px-6 py-4">{{ registro.description }}</td>
+        <td class="px-6 py-4">{{ registro.channel }}</td>
+        <td class="px-6 py-4">
+          {{ registro.payment_date | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="px-6 py-4">
+          {{ registro.informed_date | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="px-6 py-4">
+          {{ registro.available_at | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="px-6 py-4">${{ registro.amount_paid }}</td>
+        <td class="px-6 py-4">${{ registro.net_fee + registro.iva_fee }}</td>
+        <td class="px-6 py-4">${{ registro.net_amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #elseBlock>
+  <h1>La fecha seleccionada no tiene entradas</h1>
+</ng-template>
