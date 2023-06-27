@@ -10,7 +10,7 @@ export class NavbarComponent {
 
   constructor(
     private router: Router,
-    private darkModeService: DarkModeService
+    public darkModeService: DarkModeService
   ) {}
 
   isActive(route: string): boolean {

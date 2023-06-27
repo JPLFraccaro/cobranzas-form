@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DarkModeService {
-  private isDarkModeEnabled = false
+  public isDarkModeEnabled = false
 
   constructor() {
     this.loadDarkModePreference()
@@ -12,11 +12,9 @@ export class DarkModeService {
   toggleDarkMode(): void {
     this.isDarkModeEnabled = !this.isDarkModeEnabled;
     if (this.isDarkModeEnabled) {
-      document.documentElement.classList.add('dark');
-      alert(document.documentElement.classList)
+      document.documentElement.classList.add('dark')
     } else {
-      document.documentElement.classList.remove('dark');
-      alert(document.documentElement.classList)
+      document.documentElement.classList.remove('dark')
     }
     this.saveDarkModePreference();
   }

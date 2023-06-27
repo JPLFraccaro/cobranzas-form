@@ -9,12 +9,16 @@ import { Router } from '@angular/router'
   styleUrls: ['./cobranzas.component.css']
 })
 export class CobranzasComponent implements OnInit{
-  registros: Cobranza[] = []
-  selectedDate: string = ''
+  registros : Cobranza[] = []
+  selectedDate : string = ''
   //defino ayer para inicializar
-  todayDate: Date = new Date()
+  todayDate : Date = new Date()
   yesterdayDate : Date = new Date(this.todayDate.setDate(this.todayDate.getDate()-1))//pido un reporte con la fecha de ayer para inicializar
-  yesterdayString: string = this.dateToString(this.yesterdayDate)
+  yesterdayString : string = this.dateToString(this.yesterdayDate)
+  brutoDiario : number = 0
+  netoDiario : number = 0
+
+
 
   constructor(
     private https: HttpClient,
@@ -56,6 +60,8 @@ export class CobranzasComponent implements OnInit{
     this.https.get<ReporteCobranzas>(`${url}${date}`, { headers })
       .subscribe(reporte => {
         reporte.data?this.registros = reporte.data:this.registros = reporte.data
+        this.brutoDiario = reporte.total_collected
+        this.netoDiario = reporte.total_net_amount
       })
   }
 }
