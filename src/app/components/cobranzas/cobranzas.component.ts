@@ -30,10 +30,6 @@ export class CobranzasComponent implements OnInit{
     this.getReport()
   }
 
-  logOut(){
-    this.router.navigate(['home'])
-  }
-
   dateToString(date: Date){
     const day = date.getDate()
     const month = ((date.getMonth() + 1 > 9)?(date.getMonth() + 1).toString():(date.getMonth() + 1).toString().padStart(2, '0'))
